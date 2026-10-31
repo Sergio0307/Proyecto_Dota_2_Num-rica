@@ -1,0 +1,41 @@
+\section{Análisis del error y sensibilidad del modelo}
+
+Un modelo matemático es, por definición, una aproximación a la realidad. En el caso del farmeo en Dota 2, el modelo asume condiciones ideales que no siempre se cumplen en una partida real. Esta sección analiza las principales fuentes de error y evalúa cómo perturbaciones en los parámetros afectan la eficiencia del farmeo.
+
+\subsection{Fuentes de error en el modelo}
+
+El error relativo \(E_r\) entre el farmeo óptimo \(F_{opt}\) y el farmeo real \(F_{real}\) puede descomponerse en varias fuentes identificables:
+
+\begin{enumerate}
+    \item \textbf{Errores de \textit{timing} en el \textit{stacking}.} La ventana de apilamiento es estrecha (alrededor del segundo :53 al :55). Un retraso de apenas un segundo puede hacer que el campamento no se apile, perdiendo el oro adicional que habría generado.
+    
+    \item \textbf{Pérdida de oleadas por rotaciones ineficientes.} Si el jugador dedica demasiado tiempo a desplazarse o a limpiar un campamento, puede perder la siguiente oleada de línea. Esto representa una pérdida directa de oro que no se recupera.
+    
+    \item \textbf{Muertes e interrupciones.} Cada muerte implica un tiempo de respawn durante el cual no se farmea, además de la pérdida de oro acumulado. El modelo ideal asume cero muertes.
+    
+    \item \textbf{Interferencia enemiga.} El modelo asume un entorno sin oposición. En una partida real, el enemigo puede invadir campamentos, bloquear rutas o forzar rotaciones defensivas que alteran la ruta óptima.
+    
+    \item \textbf{Simplificaciones del modelo.} Los valores de oro utilizados son promedios; en el juego real, cada \textit{creep} tiene un rango de oro. Además, el modelo no considera el incremento gradual de dificultad y recompensa de los \textit{creeps} cada 7.5 minutos.
+\end{enumerate}
+
+\subsection{Análisis de sensibilidad}
+
+Para evaluar la robustez del modelo, se realizaron experimentos de sensibilidad variando los parámetros clave y observando su impacto en el error relativo.
+
+\subsubsection{Sensibilidad al parámetro \(r\)}
+
+El parámetro \(r\) representa el número de campamentos neutrales limpiados por minuto. Un valor de \(r = 0.5\) significa que el jugador limpia un campamento cada dos minutos. Si este valor se reduce a \(r = 0.3\) (por ejemplo, por rotaciones más lentas o mayor tiempo de limpieza), el oro teórico óptimo disminuye, pero el error relativo respecto al farmeo real puede aumentar si el jugador no ajusta su ruta.
+
+\subsubsection{Sensibilidad al fallo de \textit{stacking}}
+
+Si el jugador intenta apilar un campamento pero falla el \textit{timing} por un segundo, el campamento no se duplica. Esto representa una pérdida de aproximadamente 78 de oro (el valor de un campamento Medium) por cada intento fallido. Si se fallan tres intentos en los primeros 10 minutos, la pérdida acumulada es de 234 de oro, lo que puede incrementar el error relativo en varios puntos porcentuales.
+
+\subsubsection{Sensibilidad a las muertes}
+
+Una muerte a los 8 minutos implica un tiempo de respawn de aproximadamente 20--25 segundos, durante el cual el jugador no farmea. Además, se pierde oro por la muerte misma. El impacto en el error relativo depende del momento: una muerte temprana tiene un efecto menor en términos absolutos, pero puede interrumpir la ruta óptima en un momento crítico.
+
+\subsection{Discusión}
+
+El análisis de sensibilidad muestra que el modelo es más robusto frente a variaciones pequeñas en los parámetros temporales, pero es especialmente sensible a los fallos de \textit{stacking} y a las rotaciones ineficientes. Esto sugiere que, en la práctica, el mayor margen de mejora para un jugador no está en optimizar los últimos segundos de una ruta, sino en evitar los errores gruesos: no perder oleadas, no fallar el \textit{stacking} de manera sistemática y no morir en momentos innecesarios.
+
+Desde el punto de vista de la Matemática Numérica, el modelo cumple su función: no pretende predecir con exactitud milimétrica el oro de una partida real, sino proporcionar un marco cuantitativo que permita identificar dónde se pierde eficiencia y cuánto impacta cada decisión en el resultado final.

@@ -1,0 +1,114 @@
+\section{Croquis: mapa y ruta de farmeo}
+
+\begin{frame}{Esquema del mapa y ruta de farmeo}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.85, transform shape]
+      % Fondo del mapa
+      \fill[gray!10] (0,0) rectangle (12,8);
+      \draw[gray!50, thick] (0,0) rectangle (12,8);
+
+      % Líneas del mapa (esquemáticas)
+      % Línea segura (abajo)
+      \draw[lanecolor, thick] (1,1) -- (6,1) -- (11,1);
+      % Línea media (diagonal)
+      \draw[lanecolor, thick] (1,1) -- (6,4) -- (11,7);
+      % Línea off (arriba)
+      \draw[lanecolor, thick] (1,7) -- (6,7) -- (11,7);
+
+      % Campamentos neutrales
+      \foreach \x/\y/\n in {
+        3/2.5/A, 5/2.5/B, 8/2.5/C,
+        3/5.5/D, 5/5.5/E, 8/5.5/F,
+        2/4/G, 10/4/H}
+      {
+        \fill[campcolor] (\x,\y) circle (0.25);
+        \node[font=\tiny, white] at (\x,\y) {\n};
+      }
+
+      % Nodos de oleada (puntos medios de línea)
+      \foreach \x/\y in {3/1, 6/1, 9/1, 4/2.5, 7/4, 9/6}
+      {
+        \fill[lanecolor] (\x,\y) circle (0.18);
+      }
+
+      % Ruta óptima (flechas)
+      \draw[routecolor, very thick, -{Stealth[length=3mm]}] (3,1)
+        -- (3,2.3) -- (3,2.5);
+      \draw[routecolor, very thick, -{Stealth[length=3mm]}] (3,2.5)
+        -- (4.7,2.5);
+      \draw[routecolor, very thick, -{Stealth[length=3mm]}] (5,2.5)
+        -- (6,1.2);
+      \draw[routecolor, very thick, -{Stealth[length=3mm]}] (6,1)
+        -- (6,3.5) -- (5,5.3);
+      \draw[routecolor, very thick, -{Stealth[length=3mm]}] (5,5.5)
+        -- (6,4.2);
+
+      % Etiquetas de tiempo
+      \node[font=\scriptsize, routecolor, above] at (3,2.0) {0:30};
+      \node[font=\scriptsize, routecolor, above] at (4.0,2.5) {1:00};
+      \node[font=\scriptsize, routecolor, above] at (5.5,1.6) {1:30};
+      \node[font=\scriptsize, routecolor, left] at (5.9,3.5) {2:00};
+
+      % Leyenda
+      \node[font=\scriptsize, anchor=west] at (0.3,7.6) {\textcolor{lanecolor}{\(\bullet\)} Oleada};
+      \node[font=\scriptsize, anchor=west] at (2.8,7.6) {\textcolor{campcolor}{\(\bullet\)} Campamento};
+      \node[font=\scriptsize, anchor=west] at (6.3,7.6) {\textcolor{routecolor}{\(\rightarrow\)} Ruta óptima};
+    \end{tikzpicture}
+  \end{center}
+  \vspace{-0.3em}
+  \begin{center}
+    \small Ruta esquemática: oleada \(\rightarrow\) campamento \(\rightarrow\) oleada \(\rightarrow\) campamento.
+  \end{center}
+\end{frame}
+
+\begin{frame}{Tres rutas, tres héroes}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.75, transform shape]
+      % Panel Sven
+      \begin{scope}[xshift=0cm]
+        \fill[gray!10] (0,0) rectangle (3.5,4);
+        \draw[gray!50] (0,0) rectangle (3.5,4);
+        \node[font=\scriptsize\bfseries] at (1.75,3.7) {Sven};
+        \draw[lanecolor, thick] (0.2,0.5) -- (3.3,0.5);
+        \fill[campcolor] (1.2,1.8) circle (0.2);
+        \fill[campcolor] (2.5,1.8) circle (0.2);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (0.5,0.5) -- (1.2,1.6);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (1.2,1.8) -- (2.5,1.8);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (2.5,1.8) -- (3.0,0.7);
+        \node[font=\tiny] at (1.75,0.2) {área};
+      \end{scope}
+
+      % Panel Luna
+      \begin{scope}[xshift=4.2cm]
+        \fill[gray!10] (0,0) rectangle (3.5,4);
+        \draw[gray!50] (0,0) rectangle (3.5,4);
+        \node[font=\scriptsize\bfseries] at (1.75,3.7) {Luna};
+        \draw[lanecolor, thick] (0.2,0.5) -- (3.3,0.5);
+        \fill[campcolor] (0.8,2.2) circle (0.2);
+        \fill[campcolor] (2.7,2.2) circle (0.2);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (0.5,0.5) -- (0.8,2.0);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (0.8,2.2) -- (2.7,2.2);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (2.7,2.2) -- (3.0,0.7);
+        \node[font=\tiny] at (1.75,0.2) {rebote};
+      \end{scope}
+
+      % Panel Templar
+      \begin{scope}[xshift=8.4cm]
+        \fill[gray!10] (0,0) rectangle (3.5,4);
+        \draw[gray!50] (0,0) rectangle (3.5,4);
+        \node[font=\scriptsize\bfseries] at (1.75,3.7) {Templar};
+        \draw[lanecolor, thick] (0.2,0.5) -- (3.3,0.5);
+        \fill[campcolor] (1.75,1.8) circle (0.2);
+        \fill[campcolor] (1.75,2.8) circle (0.2);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (0.5,0.5) -- (1.6,1.7);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (1.75,1.8) -- (1.75,2.6);
+        \draw[routecolor, very thick, -{Stealth[length=2mm]}] (1.75,2.8) -- (3.0,0.7);
+        \node[font=\tiny] at (1.75,0.2) {alineación};
+      \end{scope}
+    \end{tikzpicture}
+  \end{center}
+  \vspace{-0.3em}
+  \begin{center}
+    \small Cada héroe favorece una geometría de ruta distinta.
+  \end{center}
+\end{frame}

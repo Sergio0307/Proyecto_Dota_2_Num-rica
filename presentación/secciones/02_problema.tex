@@ -1,0 +1,26 @@
+\section{El problema}
+
+\begin{frame}{La decisión constante del jugador}
+  Cada 30 segundos, el jugador debe elegir:
+  \begin{enumerate}
+    \item Quedarse en la línea y esperar la próxima oleada.
+    \item Rotar a un campamento neutral y limpiarlo.
+    \item Stackear un campamento para el futuro.
+  \end{enumerate}
+  \vspace{0.8em}
+  \begin{block}{Pregunta central}
+    ¿Existe una \textbf{ruta óptima} que maximice el oro obtenido en un tiempo dado, sin perder oleadas? Y si un jugador real no la sigue, ¿qué tan lejos está de ella?
+  \end{block}
+\end{frame}
+
+\begin{frame}{Por qué no se puede responder a ojo}
+  \begin{itemize}
+    \item Hay demasiadas combinaciones de decisiones posibles.
+    \item El tiempo de desplazamiento depende del héroe.
+    \item Las oleadas y los campamentos compiten por el mismo tiempo.
+  \end{itemize}
+  \vspace{0.8em}
+  \begin{center}
+    \Large Se necesita \textbf{calcular}, no adivinar.
+  \end{center}
+\end{frame}

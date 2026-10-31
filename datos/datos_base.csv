@@ -1,0 +1,7 @@
+tipo,subtipo,oro_promedio,intervalo_spawn_s,minuto_inicio,notas
+lane,melee,36,30,0,"3 al inicio; +1 a los 15/30/45 min"
+lane,ranged,48,30,0,"1 al inicio; +1 a los 40 min"
+neutral,small,55,60,1,"stacking en :53-:55"
+neutral,medium,78,60,1,"stacking en :53-:55"
+neutral,large,100,60,1,"stacking en :53-:55"
+neutral,ancient,160,60,1,"stacking en :53-:55"

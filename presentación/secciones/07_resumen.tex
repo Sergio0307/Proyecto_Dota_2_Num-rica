@@ -1,0 +1,85 @@
+\section{Resumen y conclusiones}
+
+\begin{frame}{Productos del proyecto}
+  \begin{enumerate}
+    \item \textbf{Una función matemática} \(F_{opt}(T)\): cuánto oro deberías tener en el minuto \(T\) si farmearas perfecto.
+    \item \textbf{Una tabla de errores relativos} para Sven, Luna y Templar Assassin: en qué minuto cada uno se aleja más del óptimo y por qué.
+    \item \textbf{Un croquis sobre el mapa de Dota 2} con la ruta recomendada para cada héroe, marcando tiempos.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Cómo se construye \(F_{opt}(T)\)}
+  \begin{block}{Función de oro por oleada}
+    \[
+      G_{oleada}(t) = 36 \cdot C_{melee}(t) + 48 \cdot C_{ranged}(t)
+    \]
+  \end{block}
+  \begin{block}{Función acumulada}
+    \[
+      F_{opt}(T) = \sum_{k=0}^{2T-1} G_{oleada}\!\left(\tfrac{k}{2}\right) + r \cdot 78 \cdot T
+    \]
+    donde \(r\) es el número de campamentos neutrales limpiados por minuto.
+  \end{block}
+\end{frame}
+
+\begin{frame}{El plan en una tabla}
+  \begin{center}
+    \small
+    \begin{tabular}{cp{6.5cm}p{4cm}}
+      \toprule
+      \textbf{Paso} & \textbf{Qué se explica} & \textbf{Herramienta} \\
+      \midrule
+      1 & Qué es Dota 2 y qué es farmear & Contexto \\
+      2 & El problema: ¿dónde conviene ir? & Optimización \\
+      3 & Cómo estimar datos que no tienes & Interpolación \\
+      4 & Cómo medir si farmeas bien o mal & Error relativo \\
+      5 & Por qué tres héroes distintos & Casos de estudio \\
+      6 & Qué se va a entregar & Función, tabla, croquis \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Diagrama de flujo del proyecto}
+  \begin{center}
+    \begin{tikzpicture}[
+      node distance=0.8cm and 0.5cm,
+      box/.style={rectangle, rounded corners, draw=optcolor, fill=optcolor!10, 
+                  text width=3.2cm, align=center, font=\scriptsize, minimum height=0.8cm},
+      arrow/.style={-{Stealth[length=2.5mm]}, thick, optcolor}
+    ]
+      \node[box] (datos) {Datos de la wiki};
+      \node[box, right=of datos] (func) {Funciones \(C(t)\), \(G(t)\)};
+      \node[box, right=of func] (med) {Mediciones en demo};
+      \node[box, below=of func] (fopt) {\(F_{opt}(T)\) acumulada};
+      \node[box, below=of med] (real) {\(F_{real}(T)\) medida};
+      \node[box, below=of fopt] (error) {Error relativo \(E_r\)};
+      \node[box, below=of real] (grafo) {Grafo de rutas};
+      \node[box, below=of error] (croquis) {Croquis final};
+      \node[box, right=of croquis] (analisis) {Análisis de sensibilidad};
+
+      \draw[arrow] (datos) -- (func);
+      \draw[arrow] (func) -- (med);
+      \draw[arrow] (func) -- (fopt);
+      \draw[arrow] (med) -- (real);
+      \draw[arrow] (fopt) -- (error);
+      \draw[arrow] (real) -- (error);
+      \draw[arrow] (real) -- (grafo);
+      \draw[arrow] (error) -- (croquis);
+      \draw[arrow] (grafo) -- (croquis);
+      \draw[arrow] (croquis) -- (analisis);
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Mensaje final}
+  \begin{center}
+    \Large
+    ``Tengo un amigo que juega Dota y siempre se queja de que farmea poco.\\[0.5em]
+    Quiero demostrarle \textbf{matemáticamente} dónde está perdiendo oro.''
+  \end{center}
+  \vspace{1em}
+  \begin{block}{Idea de fondo}
+    La Matemática Numérica no es un conjunto abstracto de fórmulas: es una herramienta concreta para resolver problemas de optimización en contextos reales, incluso en los videojuegos.
+  \end{block}
+\end{frame}

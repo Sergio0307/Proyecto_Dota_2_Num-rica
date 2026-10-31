@@ -1,0 +1,35 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Planteamiento del problema}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Pilares del proyecto}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Justificación}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Alcance y resultado esperado}{4}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Objetivos}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Objetivo general}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Objetivos específicos}{5}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Metodología}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Fase 1: Consolidación de datos base}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Fase 2: Construcción de las funciones matemáticas}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Fase 3: Medición empírica de tiempos}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Fase 4: Cálculo del error relativo y herramientas numéricas}{7}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Fase 5: Construcción del grafo de rutas y croquis final}{7}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Herramientas computacionales}{7}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Resultados}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Comparación: Farmeo Óptimo (Inmortal) vs Promedio}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Evolución del error relativo}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Interpolación del oro acumulado}{8}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Grafo de rutas de farmeo}{10}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Análisis del error y sensibilidad del modelo}{10}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Fuentes de error en el modelo}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Análisis de sensibilidad}{11}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Sensibilidad al parámetro \(r\)}{11}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Sensibilidad al fallo de \textit {stacking}}{11}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Sensibilidad a las muertes}{11}{subsubsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.3}Discusión}{11}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Conclusiones}{12}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Conclusiones sobre el modelo matemático}{12}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Conclusiones sobre el error relativo}{12}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Conclusiones sobre las herramientas numéricas}{12}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Limitaciones del estudio}{12}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Trabajo futuro}{12}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Reflexión final}{13}{subsection.6.6}%

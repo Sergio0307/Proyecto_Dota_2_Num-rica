@@ -1,0 +1,16 @@
+heroe,orden,minuto,nodo,tipo,oro_esperado
+Sven,1,0.0,linea_segura,oleada,156
+Sven,2,0.5,linea_segura,oleada,156
+Sven,3,1.0,campamento_A,neutral,78
+Sven,4,1.5,linea_segura,oleada,156
+Sven,5,2.0,campamento_B,neutral,78
+Luna,1,0.0,linea_segura,oleada,156
+Luna,2,0.5,linea_segura,oleada,156
+Luna,3,1.0,campamento_A,neutral,78
+Luna,4,1.5,campamento_B,neutral,78
+Luna,5,2.0,linea_segura,oleada,156
+Templar,1,0.0,linea_segura,oleada,156
+Templar,2,0.5,linea_segura,oleada,156
+Templar,3,1.0,campamento_A,neutral,78
+Templar,4,1.5,linea_segura,oleada,156
+Templar,5,2.0,linea_segura,oleada,156

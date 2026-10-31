@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+  \begin{axis}[
+    width=11cm, height=6cm,
+    xlabel={Tiempo \(T\) (minutos)},
+    ylabel={Oro acumulado},
+    xmin=0, xmax=20, ymin=0, ymax=6000,
+    grid=major, grid style={gray!20},
+    legend pos=north west,
+    legend style={font=\scriptsize},
+    tick label style={font=\scriptsize},
+    label style={font=\small},
+  ]
+    % F_opt exacta (usando r=0.5)
+    \addplot[optcolor, thick, domain=0:20, samples=100]
+      {195*x};
+    \addlegendentry{\(F_{opt}(T) = 195T\)}
+
+    % F_real (curva de ejemplo)
+    \addplot[realcolor, thick, dashed, domain=0:20, samples=100]
+      {180*x - 1.5*x^2 + 0.03*x^3};
+    \addlegendentry{\(F_{real}(T)\) medida}
+
+    % Relleno del "oro perdido"
+    \addplot[fill=red!15, draw=none, domain=6:20]
+      {195*x - (180*x - 1.5*x^2 + 0.03*x^3)}
+      \closedcycle;
+  \end{axis}
+\end{tikzpicture}

@@ -1,0 +1,52 @@
+\section{Metodología}
+
+El desarrollo del proyecto se estructura en cinco fases consecutivas, cada una de las cuales produce un insumo para la siguiente. El enfoque combina la recopilación de datos empíricos del juego, la formalización matemática del farmeo, la implementación computacional de los cálculos y el análisis de los resultados.
+
+\subsection{Fase 1: Consolidación de datos base}
+
+Se extraen de la documentación oficial de Dota 2 (Dota 2 Wiki) los parámetros temporales y económicos del juego: intervalo de aparición de oleadas (30 segundos), composición de las oleadas por minuto, valores de oro por tipo de \textit{creep} de línea, intervalo de aparición de campamentos neutrales (60 segundos) y valores promedio de oro por tier de campamento (Small, Medium, Large, Ancient). Estos datos se organizan en la tabla \texttt{datos\_base.csv}.
+
+\subsection{Fase 2: Construcción de las funciones matemáticas}
+
+Con los datos base se definen las funciones discretas del tiempo que describen la generación de recursos. La cantidad de \textit{creeps} por oleada en el minuto \(t\) se modela mediante funciones indicadoras:
+\[
+C_{melee}(t) = 3 + \mathbf{1}_{t \geq 15} + \mathbf{1}_{t \geq 30} + \mathbf{1}_{t \geq 45}
+\]
+\[
+C_{ranged}(t) = 1 + \mathbf{1}_{t \geq 40}
+\]
+El oro esperado por oleada es:
+\[
+G_{oleada}(t) = 36 \cdot C_{melee}(t) + 48 \cdot C_{ranged}(t)
+\]
+Y la función de farmeo teórico óptimo acumulado en \(T\) minutos es:
+\[
+F_{opt}(T) = \sum_{k=0}^{2T-1} G_{oleada}\!\left(\tfrac{k}{2}\right) + r \cdot 78 \cdot T
+\]
+donde \(r\) es el número de campamentos neutrales limpiados por minuto, parámetro que se determina empíricamente en la Fase 3.
+
+\subsection{Fase 3: Medición empírica de tiempos}
+
+Se utiliza el modo demo de Dota 2 para cronometrar, con cada uno de los tres héroes de estudio (Sven, Luna y Templar Assassin), los siguientes tramos:
+\begin{itemize}
+    \item Trayecto desde el punto medio de la línea segura hasta el campamento neutral más cercano.
+    \item Tiempo de limpieza del campamento (sin uso de habilidades, o con habilidades representativas según el héroe).
+    \item Trayecto de vuelta a la línea.
+\end{itemize}
+Con estos datos se calcula el ciclo completo \(t_{ciclo}\) y se obtiene el parámetro \(r = 60 / t_{ciclo}\), ajustado por el tiempo necesario para limpiar las oleadas de línea.
+
+\subsection{Fase 4: Cálculo del error relativo y herramientas numéricas}
+
+Se registra el oro acumulado real (\(F_{real}\)) de cada héroe en los minutos 5, 10, 15 y 20 de una partida de práctica, y se calcula el error relativo respecto al óptimo teórico:
+\[
+E_r(T) = \frac{|F_{opt}(T) - F_{real}(T)|}{F_{opt}(T)} \times 100\%
+\]
+Adicionalmente, se implementa la \textbf{interpolación de Lagrange} para estimar valores de oro en minutos no medidos directamente, a partir de los datos discretos disponibles. Esto permite construir curvas continuas de rendimiento y comparar el comportamiento real con el teórico sin necesidad de jugar partidas adicionales.
+
+\subsection{Fase 5: Construcción del grafo de rutas y croquis final}
+
+El mapa se modela como un grafo dirigido en el que los nodos representan puntos de oleada y campamentos neutrales, y las aristas están ponderadas con los tiempos de desplazamiento medidos. Sobre este grafo se aplican técnicas de optimización (camino de máximo peso) para determinar la secuencia de nodos que maximiza el oro acumulado en un intervalo dado. El resultado se traslada a una representación visual sobre el mapa de Dota 2, con los tiempos anotados para cada héroe.
+
+\subsection{Herramientas computacionales}
+
+La implementación se realiza en \textbf{Python}, utilizando las librerías \texttt{numpy} para cálculos numéricos, \texttt{matplotlib} para la generación de gráficos, \texttt{pandas} para el manejo de datos tabulares y \texttt{networkx} para la construcción y análisis del grafo de rutas. El informe y las diapositivas se elaboran en \LaTeX{}, con la clase \texttt{beamer} para la presentación.

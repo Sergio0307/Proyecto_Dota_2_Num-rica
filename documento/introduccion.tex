@@ -1,0 +1,36 @@
+\section{Introducción}
+
+El presente proyecto surge de la intersección entre un fenómeno cotidiano dentro de los videojuegos de estrategia multijugador y una disciplina formal de las matemáticas aplicadas: la Matemática Numérica. Dota 2, uno de los \textit{MOBA} (Multiplayer Online Battle Arena) más competitivos del mundo, exige a sus jugadores tomar decisiones constantes sobre cuándo, dónde y cómo obtener recursos. Entre estos recursos, el \textbf{farmeo} ---la obtención de oro y experiencia mediante la eliminación de \textit{creeps} de línea y campamentos neutrales--- constituye el eje económico de una partida. La calidad y la velocidad con que un jugador farmea determinan su capacidad de comprar objetos, escalar en poder y, en última instancia, incidir en el resultado del encuentro. Sin embargo, la mayoría de los jugadores optimiza este proceso de forma intuitiva, guiándose por la experiencia y la repetición, sin un modelo cuantitativo que mida qué tan lejos está su desempeño real del óptimo teórico.
+
+Esta brecha entre la intuición y el rigor constituye el punto de partida del proyecto. La Matemática Numérica ofrece precisamente las herramientas para cerrarla. A través de métodos de aproximación, análisis de errores, interpolación, derivación e integración numérica, y técnicas de optimización, es posible construir un modelo que describa la generación de recursos en el juego y evalúe la eficiencia del farmeo con precisión cuantificable. En este proyecto se propone utilizar dichas herramientas para diseñar un \textbf{croquis de farmeo óptimo}, es decir, una ruta de movimiento entre oleadas de \textit{creeps} y campamentos neutrales que maximice la obtención de oro en un intervalo de tiempo determinado, minimizando el tiempo perdido en desplazamientos improductivos y en esperas innecesarias.
+
+\subsection{Planteamiento del problema}
+
+En Dota 2, los recursos no aparecen de forma arbitraria ni continua, sino que siguen reglas temporales discretas y bien definidas. Las oleadas de \textit{creeps} de línea aparecen cada \textbf{30 segundos} desde el inicio de la partida, y su composición cambia a lo largo del tiempo: comienzan con tres \textit{melee} y uno \textit{ranged}, y a los minutos 15, 30, 40 y 45 se añaden unidades adicionales hasta alcanzar seis \textit{melee} y dos \textit{ranged}. Por su parte, los campamentos neutrales generan un nuevo grupo cada \textbf{60 segundos}, siempre que el campamento esté vacío en el instante de aparición; esta condición permite el \textit{stacking}, una técnica que consiste en atraer a los \textit{creeps} fuera de la caja de aparición alrededor del segundo :53--:55 para que, al no haber unidades dentro, aparezca un grupo adicional y se acumulen varios en un mismo campamento.
+
+Estas reglas convierten el farmeo en un problema con estructura matemática clara, pero con una complejidad práctica considerable: el jugador debe decidir, segundo a segundo, si conviene quedarse en la línea, rotar a un campamento neutral, stackear para el futuro o priorizar una oleada que está por aparecer. La pregunta central del proyecto es, entonces: \textbf{¿cuál es la ruta de farmeo que maximiza la obtención de oro en un intervalo de tiempo dado, y qué tan lejos está el farmeo real de un jugador de esa ruta óptima?}
+
+\subsection{Pilares del proyecto}
+
+El problema se aborda desde tres pilares articulados entre sí.
+
+\textbf{Primero, la modelación de los datos base del juego.} Se recopilan y formalizan las reglas de aparición de oleadas y campamentos neutrales, así como los valores de oro asociados a cada tipo de \textit{creep}. Esta información se organiza en funciones discretas del tiempo, como \(C(t)\), que devuelve el número de \textit{creeps} por oleada en el minuto \(t\), y \(N(t)\), que estima el valor esperado de oro de un campamento neutral según su tipo y su nivel de \textit{stacking}.
+
+\textbf{Segundo, la construcción de una función de farmeo teórico óptimo} \(F_{opt}(t)\), que representa el máximo de recursos acumulables en \(t\) minutos si se ejecutara la ruta perfecta, sin pérdidas de tiempo, sin muertes y con \textit{stacking} ideal. Esta función constituye el referente contra el cual se compara el desempeño real y se obtiene mediante técnicas de optimización sobre un grafo de nodos (campamentos y puntos de oleada) conectados por aristas ponderadas con los tiempos de desplazamiento del héroe.
+
+\textbf{Tercero, la evaluación del error relativo} entre ese óptimo y el farmeo real \(F_{real}\), mediante la fórmula:
+\[
+E_r = \frac{|F_{opt} - F_{real}|}{F_{opt}} \times 100\%
+\]
+Este error relativo se convierte en la métrica central del proyecto: no solo cuantifica la eficiencia del jugador, sino que permite identificar en qué momentos de la partida la ruta se desvía del óptimo y por qué. A ello se suman herramientas numéricas complementarias, como la \textbf{interpolación} para estimar valores de oro no tabulados directamente, la \textbf{derivación numérica} para analizar la tasa de cambio del oro por minuto (GPM) y detectar los instantes en que el farmeo se estanca, y la \textbf{integración numérica} para calcular el oro total acumulado a partir de datos discretos, sin necesidad de sumar cada \textit{last hit} individual.
+
+\subsection{Justificación}
+
+La elección de Dota 2 como dominio de aplicación no es casual. Se trata de un entorno con reglas deterministas y documentadas, lo que permite construir modelos reproducibles y verificables, a diferencia de otros fenómenos sociales o naturales donde las variables son difíciles de aislar. Al mismo tiempo, el juego introduce elementos de incertidumbre ---la interferencia del enemigo, los errores de \textit{timing} en el \textit{stacking}, las muertes inesperadas--- que enriquecen el análisis numérico y obligan a incorporar el estudio del error no solo como medida de eficiencia, sino como parte constitutiva del modelo. Así, el proyecto trasciende la mera curiosidad lúdica: demuestra que la Matemática Numérica es una herramienta concreta para resolver problemas de optimización en contextos tan diversos como los videojuegos competitivos, y que sus conceptos ---error relativo, interpolación, integración--- tienen aplicaciones tangibles incluso en actividades que a primera vista parecen ajenas a la academia.
+
+\subsection{Alcance y resultado esperado}
+
+El resultado esperado es un modelo reproducible y visual ---un croquis sobre el mapa--- que muestre la secuencia de campamentos y oleadas que minimiza el error relativo de farmeo en un intervalo de tiempo dado. El proyecto no pretende construir un \textit{software} de asistencia en tiempo real ni automatizar decisiones de juego, sino elaborar un marco matemático que explique y cuantifique la eficiencia del farmeo, acompañado de ejemplos numéricos y gráficos que ilustren su aplicación. Con ello se busca demostrar que la Matemática Numérica no es un conjunto abstracto de fórmulas, sino una herramienta concreta para resolver problemas de optimización en contextos tan diversos como los videojuegos competitivos.
+
+\vspace{1em}
+\noindent\textbf{Palabras clave:} Matemática Numérica, optimización, error relativo, Dota 2, farmeo, \textit{stacking}, interpolación, integración numérica, GPM.

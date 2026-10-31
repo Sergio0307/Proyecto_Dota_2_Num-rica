@@ -1,0 +1,44 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Paquetes ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\geometry{margin=2.5cm}
+
+% ---------- Metadatos ----------
+\title{\textbf{Optimización del farmeo en Dota 2 mediante Matemática Numérica:\\ diseño de una ruta óptima y análisis del error relativo}}
+\author{Tu Nombre}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Índice automático
+\tableofcontents
+\newpage
+
+% ---------- Secciones del informe ----------
+% Aquí se incluyen los archivos .tex que ya tienes en la carpeta
+\input{introduccion}
+\input{objetivos}
+\input{metodologia}
+\input{resultados}
+\input{analisis_error}
+\input{conclusiones}
+
+% ---------- Bibliografía ----------
+% \nocite{*} obliga a imprimir TODAS las referencias del archivo .bib
+\nocite{*}
+
+\bibliographystyle{plain}
+\bibliography{referencias}
+
+\end{document}

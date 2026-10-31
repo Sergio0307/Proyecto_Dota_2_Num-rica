@@ -1,0 +1,67 @@
+\section{Herramienta 1: Interpolación}
+
+\begin{frame}{¿Qué es la interpolación?}
+  \begin{block}{Definición intuitiva}
+    Es una herramienta matemática que permite \textbf{estimar valores desconocidos a partir de valores conocidos}.
+  \end{block}
+  \vspace{0.5em}
+  \begin{itemize}
+    \item Si tienes datos en los minutos 5, 10 y 15, puedes estimar qué pasa en el minuto 7 o 12.
+    \item Se construye una curva que pasa exactamente por los puntos medidos.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ejemplo concreto en Dota 2}
+  \begin{columns}
+    \column{0.45\textwidth}
+    \begin{center}
+      \begin{tabular}{cc}
+        \toprule
+        Minuto & Oro \\
+        \midrule
+        5  & 1200 \\
+        10 & 2800 \\
+        15 & 4500 \\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    \column{0.55\textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=6.5cm, height=5cm,
+        xlabel={Minuto}, ylabel={Oro},
+        xmin=0, xmax=18, ymin=0, ymax=5200,
+        grid=major, grid style={gray!20},
+        tick label style={font=\scriptsize},
+        label style={font=\scriptsize},
+      ]
+        \addplot[only marks, mark=*, optcolor, mark size=2.5pt] coordinates {
+          (5,1200) (10,2800) (15,4500)
+        };
+        \addplot[optcolor, thick, smooth] coordinates {
+          (5,1200) (7,1850) (10,2800) (12,3550) (15,4500)
+        };
+        \addplot[only marks, mark=triangle*, realcolor, mark size=3pt] coordinates {
+          (12,3550)
+        };
+        \node[font=\scriptsize, realcolor] at (axis cs:13,3300) {estimado};
+      \end{axis}
+    \end{tikzpicture}
+  \end{columns}
+  \vspace{0.3em}
+  \begin{itemize}
+    \item No medimos el minuto 12: la interpolación lo estima.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{¿Por qué interpolación y no otra herramienta?}
+  \begin{itemize}
+    \item Los datos del juego son \textbf{discretos} (minuto a minuto).
+    \item El tiempo del juego es \textbf{continuo} (fluye segundo a segundo).
+    \item La interpolación \textbf{llena los huecos} entre los datos que sí tenemos.
+  \end{itemize}
+  \vspace{0.8em}
+  \begin{block}{En una frase}
+    La interpolación convierte datos sueltos en una función continua que podemos analizar.
+  \end{block}
+\end{frame}

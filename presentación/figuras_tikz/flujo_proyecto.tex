@@ -1,0 +1,27 @@
+\begin{tikzpicture}[
+  node distance=0.8cm and 0.5cm,
+  box/.style={rectangle, rounded corners, draw=optcolor, fill=optcolor!10, 
+              text width=3.2cm, align=center, font=\scriptsize, minimum height=0.8cm},
+  arrow/.style={-{Stealth[length=2.5mm]}, thick, optcolor}
+]
+  \node[box] (datos) {Datos de la wiki};
+  \node[box, right=of datos] (func) {Funciones \(C(t)\), \(G(t)\)};
+  \node[box, right=of func] (med) {Mediciones en demo};
+  \node[box, below=of func] (fopt) {\(F_{opt}(T)\) acumulada};
+  \node[box, below=of med] (real) {\(F_{real}(T)\) medida};
+  \node[box, below=of fopt] (error) {Error relativo \(E_r\)};
+  \node[box, below=of real] (grafo) {Grafo de rutas};
+  \node[box, below=of error] (croquis) {Croquis final};
+  \node[box, right=of croquis] (analisis) {Análisis de sensibilidad};
+
+  \draw[arrow] (datos) -- (func);
+  \draw[arrow] (func) -- (med);
+  \draw[arrow] (func) -- (fopt);
+  \draw[arrow] (med) -- (real);
+  \draw[arrow] (fopt) -- (error);
+  \draw[arrow] (real) -- (error);
+  \draw[arrow] (real) -- (grafo);
+  \draw[arrow] (error) -- (croquis);
+  \draw[arrow] (grafo) -- (croquis);
+  \draw[arrow] (croquis) -- (analisis);
+\end{tikzpicture}

@@ -1,0 +1,23 @@
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Diseñar un modelo matemático-numérico que permita calcular el farmeo óptimo en Dota 2 para tres héroes específicos (Sven, Luna y Templar Assassin), y evaluar mediante el error relativo qué tan lejos se encuentra el desempeño real de un jugador de dicho óptimo teórico.
+
+\subsection{Objetivos específicos}
+
+\begin{enumerate}
+    \item \textbf{Recopilar y formalizar los datos base del juego.} Extraer de la documentación oficial (Dota 2 Wiki) las reglas de aparición de oleadas de línea y campamentos neutrales, así como los valores de oro asociados a cada tipo de \textit{creep}.
+    
+    \item \textbf{Construir la función de farmeo teórico óptimo} \(F_{opt}(T)\), que represente el oro máximo acumulable en \(T\) minutos considerando tanto las oleadas de línea como los campamentos neutrales accesibles.
+    
+    \item \textbf{Medir empíricamente los tiempos de desplazamiento y limpieza} de cada héroe en modo demo, para determinar el parámetro \(r\) (campamentos neutrales limpiados por minuto) que alimenta la función \(F_{opt}\).
+    
+    \item \textbf{Implementar herramientas de Matemática Numérica} en Python: interpolación de Lagrange para estimar valores de oro no medidos, y cálculo del error relativo para cuantificar la eficiencia del farmeo.
+    
+    \item \textbf{Modelar el mapa como un grafo ponderado} (nodos = campamentos y puntos de oleada; aristas = tiempos de desplazamiento) y aplicar técnicas de optimización para encontrar la ruta de máximo rendimiento.
+    
+    \item \textbf{Elaborar un croquis visual sobre el mapa de Dota 2} que muestre la secuencia óptima de farmeo para cada uno de los tres héroes, con los tiempos anotados.
+    
+    \item \textbf{Analizar la sensibilidad del modelo} frente a perturbaciones (fallos de \textit{timing} en el \textit{stacking}, muertes, invasiones enemigas) y discutir cómo afectan al error relativo.
+\end{enumerate}

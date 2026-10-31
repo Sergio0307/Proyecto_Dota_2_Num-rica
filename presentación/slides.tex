@@ -1,0 +1,65 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+
+% ---------- Paquetes ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,calc}
+
+% ---------- Tema ----------
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ---------- Colores personalizados ----------
+\definecolor{optcolor}{RGB}{0,120,200}
+\definecolor{realcolor}{RGB}{200,50,50}
+\definecolor{lanecolor}{RGB}{80,160,80}
+\definecolor{campcolor}{RGB}{180,120,40}
+\definecolor{routecolor}{RGB}{220,80,20}
+
+% ---------- Metadatos ----------
+\title[Farmeo óptimo en Dota 2]{Optimización del farmeo en Dota 2 mediante Matemática Numérica}
+\subtitle{Diseño de una ruta óptima y análisis del error relativo}
+\author{Sergio M. de Santis Pagarizabal}
+\institute{Matemática Numérica}
+\date{\today}
+
+\begin{document}
+
+% ---------- Portada ----------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------- Índice ----------
+\begin{frame}{Contenido}
+  \tableofcontents
+\end{frame}
+
+% ---------- Secciones ----------
+% Aquí se incluyen los archivos .tex de la carpeta 'secciones/'
+\input{secciones/01_contexto}
+\input{secciones/02_problema}
+\input{secciones/03_interpolacion}
+\input{secciones/04_error_relativo}
+\input{secciones/05_heroes}
+\input{secciones/06_croquis}
+\input{secciones/07_resumen}
+
+% ---------- Cierre ----------
+\begin{frame}
+  \centering
+  \Huge \textbf{Gracias}
+\end{frame}
+
+\end{document}

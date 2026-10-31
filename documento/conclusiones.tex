@@ -1,0 +1,33 @@
+\section{Conclusiones}
+
+El presente proyecto demuestra que la Matemática Numérica puede aplicarse con rigor a contextos que, a primera vista, parecen ajenos a la academia. A lo largo de las distintas fases, se construyó un modelo cuantitativo del farmeo en Dota 2 para tres héroes específicos, se calcularon los valores teóricos óptimos, se midieron datos reales de partidas y se evaluó la brecha entre ambos mediante el error relativo.
+
+\subsection{Conclusiones sobre el modelo matemático}
+
+La función de farmeo teórico óptimo \(F_{opt}(T)\) permitió establecer un referente claro contra el cual comparar el desempeño real. Los resultados muestran que, incluso en condiciones controladas, el farmeo real se aleja progresivamente del óptimo a medida que avanza la partida, lo que confirma que los errores de decisión tienen un efecto acumulativo. Esta observación respalda la idea de que el farmeo no es solo una habilidad mecánica, sino un problema de optimización temporal que puede analizarse con herramientas matemáticas.
+
+\subsection{Conclusiones sobre el error relativo}
+
+El error relativo \(E_r\) se consolidó como la métrica central del proyecto. Su cálculo permitió no solo cuantificar la ineficiencia del farmeo, sino también identificar los momentos críticos en los que el jugador se desvía del óptimo. Los tres héroes estudiados presentaron patrones distintos: Luna mostró el error relativo más bajo en los primeros minutos, Templar Assassin el crecimiento más pronunciado, y Sven un comportamiento intermedio. Estas diferencias reflejan que el estilo de farmeo de cada héroe condiciona la ruta óptima y la sensibilidad a los errores.
+
+\subsection{Conclusiones sobre las herramientas numéricas}
+
+La interpolación de Lagrange demostró ser útil para estimar valores de oro en minutos no medidos directamente, lo que permite construir curvas continuas de rendimiento a partir de datos discretos. El grafo de rutas, por su parte, ofreció una representación formal del problema de decisión y sentó las bases para aplicar técnicas de optimización más avanzadas en futuros trabajos.
+
+\subsection{Limitaciones del estudio}
+
+El modelo presenta varias limitaciones que deben ser reconocidas. En primer lugar, asume condiciones ideales de farmeo sin interferencia enemiga, lo que no refleja la complejidad de una partida real. En segundo lugar, utiliza valores promedio de oro, sin considerar la variabilidad individual de cada \textit{creep}. En tercer lugar, el intervalo de estudio se limita a los primeros 20 minutos, periodo en el que la composición de las oleadas permanece relativamente estable pero no cubre las fases tardías del juego. Finalmente, el parámetro \(r\) (campamentos por minuto) se determinó a partir de mediciones en modo demo, que pueden no coincidir exactamente con las condiciones de una partida real.
+
+\subsection{Trabajo futuro}
+
+Como extensiones posibles de este proyecto, se propone:
+\begin{itemize}
+    \item Incorporar la interferencia enemiga como una variable estocástica, modelando la probabilidad de invasión de campamentos y su impacto en la ruta óptima.
+    \item Extender el intervalo de estudio a los 40 o 50 minutos, incorporando los incrementos de composición de oleadas y los cambios en la dificultad de los campamentos neutrales.
+    \item Implementar un algoritmo de programación dinámica sobre el grafo de rutas para obtener la secuencia óptima exacta, en lugar de la aproximación cualitativa presentada en este trabajo.
+    \item Validar el modelo con datos de partidas de alto nivel (por ejemplo, de torneos profesionales), para comparar las rutas óptimas calculadas con las que ejecutan jugadores expertos.
+\end{itemize}
+
+\subsection{Reflexión final}
+
+Este proyecto confirma que la Matemática Numérica no es un conjunto abstracto de fórmulas, sino una herramienta concreta para resolver problemas de optimización en contextos tan diversos como los videojuegos competitivos. El farmeo en Dota 2, que a primera vista parece una actividad puramente intuitiva, resultó ser un problema con estructura matemática clara, susceptible de ser modelado, medido y mejorado. Esa es, en última instancia, la contribución central de este trabajo: demostrar que el rigor numérico puede iluminar incluso los rincones más inesperados de la experiencia humana.

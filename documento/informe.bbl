@@ -1,0 +1,36 @@
+\begin{thebibliography}{1}
+
+\bibitem{burden2011}
+Richard~L. Burden and J.~Douglas Faires.
+\newblock {\em Numerical Analysis}.
+\newblock Brooks/Cole, Cengage Learning, 9th edition, 2011.
+
+\bibitem{chapra2015}
+Steven~C. Chapra and Raymond~P. Canale.
+\newblock {\em Numerical Methods for Engineers}.
+\newblock McGraw-Hill Education, 7th edition, 2015.
+
+\bibitem{dota2wiki_lane}
+{Dota 2 Wiki}.
+\newblock Lane creeps.
+\newblock \url{https://liquipedia.net/dota2/Lane_Creeps}.
+\newblock Consultado: 2026.
+
+\bibitem{dota2wiki_neutral}
+{Dota 2 Wiki}.
+\newblock Neutral creeps.
+\newblock \url{https://liquipedia.net/dota2/Neutral_Creeps}.
+\newblock Consultado: 2026.
+
+\bibitem{dota2wiki_stacking}
+{Dota 2 Wiki}.
+\newblock Stacking.
+\newblock \url{https://liquipedia.net/dota2/Stacking}.
+\newblock Consultado: 2026.
+
+\bibitem{quarteroni2010}
+Alfio Quarteroni, Riccardo Sacco, and Fausto Saleri.
+\newblock {\em Numerical Mathematics}.
+\newblock Springer, 2nd edition, 2010.
+
+\end{thebibliography}
