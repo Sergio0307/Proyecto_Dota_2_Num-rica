@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 
-% ---------- Paquetes ----------
+% ---------- Paquetes Básicos ----------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -10,7 +10,41 @@
 \usepackage{hyperref}
 \usepackage{parskip}
 
+% ---------- Paquetes para el Código (Anexos) ----------
+\usepackage{listings}
+\usepackage{xcolor}
+
+% ---------- Configuración de Página ----------
 \geometry{margin=2.5cm}
+
+% ---------- Configuración de Colores para el Código ----------
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=8pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1
+}
+\lstset{style=mystyle}
 
 % ---------- Metadatos ----------
 \title{\textbf{Optimización del farmeo en Dota 2 mediante Matemática Numérica:\\ diseño de una ruta óptima y análisis del error relativo}}
@@ -26,7 +60,6 @@
 \newpage
 
 % ---------- Secciones del informe ----------
-% Aquí se incluyen los archivos .tex que ya tienes en la carpeta
 \input{introduccion}
 \input{objetivos}
 \input{metodologia}
@@ -34,10 +67,11 @@
 \input{analisis_error}
 \input{conclusiones}
 
-% ---------- Bibliografía ----------
-% \nocite{*} obliga a imprimir TODAS las referencias del archivo .bib
-\nocite{*}
+% ---------- Anexos ----------
+\input{anexos}
 
+% ---------- Bibliografía ----------
+\nocite{*}
 \bibliographystyle{plain}
 \bibliography{referencias}
 

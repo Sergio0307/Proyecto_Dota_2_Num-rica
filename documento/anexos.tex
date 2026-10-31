@@ -1,0 +1,78 @@
+\section{Anexos: Documentación del Código}
+
+En esta sección se presenta el código fuente de los scripts desarrollados en Python para el análisis numérico del farmeo. Cada script incluye una explicación de su propósito y la función que cumple dentro del proyecto.
+
+\subsection{Script \texttt{fopt.py}: Cálculo del Farmeo Óptimo}
+\textbf{Propósito:} Define las funciones matemáticas para calcular el oro teórico de los creeps y compara los resultados del modelo con los datos reales de jugadores Inmortales y Promedio.
+
+\begin{lstlisting}[language=Python, frame=single, rulecolor=\color{black}, backgroundcolor=\color{backcolour}, caption=Código principal de \texttt{fopt.py}]
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+def c_melee(t):
+    return 3 + (t >= 15) + (t >= 30) + (t >= 45)
+
+def c_ranged(t):
+    return 1 + (t >= 40)
+
+def g_oleada(t):
+    return 36 * c_melee(t) + 48 * c_ranged(t)
+
+def f_opt(T, r=0.5, g_camp=78):
+    # Suma de oleadas y campamentos
+    oleadas = sum(g_oleada(k / 2) for k in range(2 * T))
+    neutrales = r * g_camp * T
+    return oleadas + neutrales
+\end{lstlisting}
+
+\subsection{Script \texttt{interpolacion.py}: Interpolación de Lagrange}
+\textbf{Propósito:} Implementa el método de interpolación de Lagrange para estimar el oro acumulado en minutos no medidos, a partir de datos discretos conocidos.
+
+\begin{lstlisting}[language=Python, frame=single, rulecolor=\color{black}, backgroundcolor=\color{backcolour}, caption=Código principal de \texttt{interpolacion.py}]
+def lagrange(x_puntos, y_puntos, x):
+    total = 0.0
+    n = len(x_puntos)
+    for i in range(n):
+        term = y_puntos[i]
+        for j in range(n):
+            if i != j:
+                # Calculo del termino de Lagrange
+                term *= (x - x_puntos[j]) / (x_puntos[i] - 
+                         x_puntos[j])
+        total += term
+    return total
+\end{lstlisting}
+
+\subsection{Script \texttt{error\_relativo.py}: Análisis del Error}
+\textbf{Propósito:} Calcula el porcentaje de error relativo entre el farmeo óptimo (Inmortal) y el farmeo real (Promedio) para los tres héroes, y genera una gráfica de su evolución temporal.
+
+\begin{lstlisting}[language=Python, frame=single, rulecolor=\color{black}, backgroundcolor=\color{backcolour}, caption=Código principal de \texttt{error\_relativo.py}]
+import pandas as pd
+
+# Lectura de datos reales
+df_real = pd.read_csv('../datos/farmeo_real.csv')
+
+for heroe in df_real['heroe'].unique():
+    sub = df_real[df_real['heroe'] == heroe].sort_values('minuto')
+    for _, row in sub.iterrows():
+        T = int(row['minuto'])
+        Fo = f_opt(T)
+        Fr = row['oro_real']
+        # Calculo del error relativo
+        Er = abs(Fo - Fr) / Fo * 100 
+\end{lstlisting}
+
+\subsection{Script \texttt{grafo\_rutas.py}: Modelado de Rutas}
+\textbf{Propósito:} Construye un grafo dirigido para representar los campamentos neutrales y la línea del mapa, asignando pesos a las aristas según el tiempo de desplazamiento, con el fin de optimizar la ruta de farmeo.
+
+\begin{lstlisting}[language=Python, frame=single, rulecolor=\color{black}, backgroundcolor=\color{backcolour}, caption=Código principal de \texttt{grafo\_rutas.py}]
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Creacion del grafo dirigido
+G = nx.DiGraph()
+G.add_edge('linea', 'campA', tiempo=14, oro=78)
+G.add_edge('campA', 'linea', tiempo=14, oro=0)
+G.add_edge('linea', 'campB', tiempo=20, oro=78)
+\end{lstlisting}
